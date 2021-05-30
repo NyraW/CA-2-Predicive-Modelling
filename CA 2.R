@@ -1,9 +1,6 @@
 # Import the World-happiness data frame
 world_happiness_data <- read.csv("World-happiness.csv", na = "")
 
-# Change the name of the first column to "Country"
-colnames(world_happiness_data)[1] <- "Country"
-
 # Check for missing vars and examine missing data
 # List rows with missing values
 incomplete_data <- world_happiness_data[!complete.cases(world_happiness_data),]
@@ -498,7 +495,9 @@ rse
 summary(world_happiness_data)
 
 # Real world example
+# Create model with final chosen input variables
+model2 <- lm(Life.Ladder ~ Log.GDP.per.capita + Social.support + Freedom.to.make.life.choices + Perceptions.of.corruption + Positive.affect + Negative.affect, data = training_data)
 df <- data.frame(Log.GDP.per.capita = c(7.702), Social.support = c(0.529), Freedom.to.make.life.choices = c(0.389), Perceptions.of.corruption = c(0.881), Positive.affect = c(0.554), Negative.affect = c(0.339))
 
-predicted_life_ladder <- predict(model, df)
+predicted_life_ladder <- predict(model2, df)
 predicted_life_ladder
